@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import Login from './Login';
-import Logout from './Logout';
-import Greeting from './Greeting';
+import React, { useState } from 'react'
+import Greeting from './Greeting'
+import Login from './Login'
+import Logout from './Logout'
 
 const Auth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

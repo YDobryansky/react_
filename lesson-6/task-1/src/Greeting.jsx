@@ -1,6 +1,6 @@
-import React from "react";
-import UserGreeting from './UserGreeting';
-import GuestGreeting from './GuestGreeting';
+import React from "react"
+import GuestGreeting from './GuestGreeting'
+import UserGreeting from './UserGreeting'
 
 const Greeting = ({ isLoggedIn }) => {
   return isLoggedIn ? <UserGreeting /> : <GuestGreeting />
