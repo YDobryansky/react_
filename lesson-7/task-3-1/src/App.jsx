@@ -1,5 +1,5 @@
 import React from 'react';
-import TransactionsList from './TransactionList';
+import TransactionsList from './TransactionsList';
 import transactions from './transactions.js';
 
 import './App.scss';
