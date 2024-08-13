@@ -1,6 +1,6 @@
 //https://5e5cf5eb97d2ea0014796f01.mockapi.io/api/v1/users
 
-document.addEventListener('DOMContentLoaded', () => {
+//document.addEventListener('DOMContentLoaded', () => {
   const formElem = document.querySelector('.login-form');
   const submitButton = document.querySelector('.submit-button');
 
@@ -41,4 +41,4 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Failed to save user data');
     });
   });
-});
+//});
