@@ -6,7 +6,7 @@
 
   const formFields = Array.from(formElem.elements).filter(el => el.tagName === 'INPUT');
 
-  // Відстежуємо зміни в полях форми для керування атрибутом disabled у кнопки
+  // Відстежуємо зміни в полях форми для керування доступністю кнопки сабміту
   formFields.forEach(field => {
     field.addEventListener('input', () => {
       // Кнопка повинна бути enabled, якщо форма валідна
@@ -14,15 +14,15 @@
     });
   });
 
-  // Обробник події відправки форми
+  // Відправка форми 
   formElem.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    // Зчитування даних
+    // Зчитуєм дані з форми  в вигляді обєкту
     const formData = new FormData(formElem);
     const userData = Object.fromEntries(formData);
 
-    // Відправляємо дані на сервер і обробляємо результат одним промісом
+    // Відправляємо дані на сервер і обробляємо результат
     fetch('https://5e5cf5eb97d2ea0014796f01.mockapi.io/api/v1/users', {
       method: 'POST',
       headers: {
@@ -30,6 +30,7 @@
       },
       body: JSON.stringify(userData), // Об'єкт даних перетворюється в рядок перед відправкою
     })
+    // перевіряємо інфо що отримуємо після запиту
     .then(response => response.ok ? response.json() : Promise.reject('Error in saving user data'))
     .then(result => {
       alert(JSON.stringify(result)); // Тіло відповіді від сервера виводимо в alert як об'єкт
@@ -37,6 +38,7 @@
       submitButton.disabled = true;  // Відключаємо кнопку реєстрації
     })
     .catch(error => {
+      //відловлюємо помилки коду...
       console.error('Failed to save user data', error);
       alert('Failed to save user data');
     });
