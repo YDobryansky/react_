@@ -1,38 +1,38 @@
-const formElem = document.querySelector('.login-form');
-const inputElems = document.querySelectorAll('.form-input');
-const submitButton = document.querySelector('.submit-button');
+const formElem = document.querySelector('.login-form')
+const inputElems = document.querySelectorAll('.form-input')
+const submitButton = document.querySelector('.submit-button')
 
 // Відстежуємо зміни в полях форми для керування атрибутом disabled у кнопки
-formFields.forEach(field => {
+inputElems.forEach(field => {
   field.addEventListener('input', () => {
     // Кнопка повинна бути enabled, якщо форма валідна
-    submitButton.disabled = !formElem.reportValidity();
-  });
-});
+    submitButton.disabled = !formElem.reportValidity()
+  })
+})
 
 // Обробник події відправки форми
-formElem.addEventListener('submit', event => {
-  event.preventDefault();
+formElem.addEventListener('submit', (event) => {
+  event.preventDefault()
 
-  // Зчитування даних
-  const formData = new FormData(formElem);
-  const userData = Object.fromEntries(formData);
+  // Зчитування даних з форми
+  const formData = new FormData(formElem)
+  const userData = Object.fromEntries(formData)
 
-  // Відправляємо дані на сервер і обробляємо результат одним промісом
+  // Відправка даних на сервер
   fetch('https://5e5cf5eb97d2ea0014796f01.mockapi.io/api/v1/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(userData), // Об'єкт даних перетворюється в рядок перед відправкою
+    body: JSON.stringify(userData), // Перетворення об'єкта даних у рядок перед відправкою
   })
-    .then(response > response.json())
+    .then(response => response.json()) // Проста обробка відповіді від сервера
     .then(result => {
-      alert(JSON.stringify(result)); // Тіло відповіді від сервера виводимо в alert як об'єкт
-      formElem.reset(); // Після успішного збереження очищаємо поля форми
-      submitButton.disabled = true; // Відключаємо кнопку реєстрації
+      alert(JSON.stringify(result)) // Виведення відповіді від сервера у вигляді об'єкта
+      formElem.reset()              // Очищення полів форми після успішного збереження
+      submitButton.disabled = true  // Вимкнення кнопки реєстрації після очищення форми
     })
     .catch(error => {
-      console.error('Failed to save user data', error);
-    });
-});
+      console.error('Failed to save user data', error)
+    })
+})
