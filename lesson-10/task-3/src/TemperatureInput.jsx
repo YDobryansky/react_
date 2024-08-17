@@ -1,10 +1,10 @@
 import React from 'react';
-export const scaleNames = {
+const scaleNames = {
     c: 'Celsius',
     f: 'Fahrenheit',
   };
 
-const TemperatureInput = ({ temperature, scale, onTemperatureChange }) => {
+export const TemperatureInput = ({ temperature, scale, onTemperatureChange }) => {
   const handleChange = (e) => {
     onTemperatureChange(e.target.value);
   };
@@ -16,5 +16,3 @@ const TemperatureInput = ({ temperature, scale, onTemperatureChange }) => {
     </fieldset>
   );
 };
-
-export default TemperatureInput;
