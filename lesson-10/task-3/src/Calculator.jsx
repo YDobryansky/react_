@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import TemperatureInput from './TemperatureInput';
-import BoilingVerdict from './BoilingVerdict';
+import { TemperatureInput } from './TemperatureInput';
+import { BoilingVerdict } from './BoilingVerdict';
 
 const toCelsius = (fahrenheit) => (fahrenheit - 32) * 5 / 9;
 const toFahrenheit = (celsius) => (celsius * 9 / 5) + 32;
@@ -14,7 +14,7 @@ const tryConvert = (temperature, convert) => {
   return rounded.toString();
 };
 
-const Calculator = () => {
+export const Calculator = () => {
 	const [temperature, setTemperature] = useState('');
 	const [scale, setScale] = useState('c');
 
@@ -44,5 +44,3 @@ const Calculator = () => {
 		</div>
 	);
 };
-
-export default Calculator;
