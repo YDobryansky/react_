@@ -1,5 +1,8 @@
 import React from 'react';
-import { scaleNames } from './utils';
+export const scaleNames = {
+    c: 'Celsius',
+    f: 'Fahrenheit',
+  };
 
 const TemperatureInput = ({ temperature, scale, onTemperatureChange }) => {
   const handleChange = (e) => {
