@@ -21,15 +21,15 @@ export const fetchTasksList = () => {
         return res.json();
       }
     })
-    .then(taskList =>
-      taskList.map(({ _id, ...task }) => ({
-        id: _id,
+    .then(tasksList =>
+      tasksList.map(({ id, ...task }) => ({
+        id,
         ...task,
       })),
     );
 };
 
-export const uptatedTasks = (taskId, taskData) => {
+export const updateTask = (taskId, taskData) => {
   return fetch(`${baseUrl}/${taskId}`, {
     method: 'PUT',
     headers: {
@@ -38,7 +38,7 @@ export const uptatedTasks = (taskId, taskData) => {
     body: JSON.stringify(taskData),
   }).then(response => {
     if (!response.ok) {
-      throw new Error('Failed to update task ');
+      throw new Error('Failed to update task');
     }
   });
 };

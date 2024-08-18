@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 class CreateTaskInput extends Component {
   state = {
@@ -13,8 +13,11 @@ class CreateTaskInput extends Component {
   };
 
   handleTaskCreate = () => {
-    this.props.onCreate(this.state.value);
-    this.setState({ value: '' });
+    const { value } = this.state;
+    if (value.trim()) {
+      this.props.onCreate(value);
+      this.setState({ value: '' });
+    }
   };
 
   render() {
@@ -34,8 +37,8 @@ class CreateTaskInput extends Component {
   }
 }
 
-export default CreateTaskInput;
-
-CreateTaskInput.defaultProps = {
-  value: '',
+CreateTaskInput.propTypes = {
+  onCreate: PropTypes.func.isRequired,
 };
+
+export default CreateTaskInput;

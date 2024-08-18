@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import Task from './Task';
-import CreateTaskInput from './CreateTastInput';
-import { createTask, deleteTask, fetchTasksList, uptatedTasks } from './tasksGateway';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import CreateTaskInput from './CreateTaskInput'
+import Task from './Task'
+import { createTask, deleteTask, fetchTasksList, updateTask } from './tasksGateway'
 
 class TasksList extends Component {
   state = {
@@ -10,28 +10,22 @@ class TasksList extends Component {
   };
 
   componentDidMount() {
-    this.fetchTask();
+    this.fetchTasks();
   }
 
-  fetchTask = () => {
-    fetchTasksList().then(taskList =>
-      this.setState({
-        tasks: taskList,
-      }),
+  fetchTasks = () => {
+    fetchTasksList().then(tasksList =>
+      this.setState({ tasks: tasksList }),
     );
   };
 
   onCreate = text => {
-    const newId =
-      this.state.tasks.length > 0 ? this.state.tasks[this.state.tasks.length - 1].id + 1 : 1;
-
     const newTask = {
-      id: newId,
       text,
       done: false,
     };
 
-    createTask(newTask).then(() => this.fetchTask());
+    createTask(newTask).then(() => this.fetchTasks());
   };
 
   handleTaskStatusChange = id => {
@@ -41,11 +35,11 @@ class TasksList extends Component {
       done: !done,
     };
 
-    uptatedTasks(id, updatedTask).then(() => this.fetchTask());
+    updateTask(id, updatedTask).then(() => this.fetchTasks());
   };
 
   handleTaskDelete = id => {
-    deleteTask(id).then(() => this.fetchTask());
+    deleteTask(id).then(() => this.fetchTasks());
   };
 
   render() {
@@ -53,6 +47,7 @@ class TasksList extends Component {
 
     return (
       <div className="todo-list">
+        <h1 className="title">Todo List</h1>
         <CreateTaskInput onCreate={this.onCreate} />
         <ul className="list">
           {sortedList.map(task => (
@@ -69,8 +64,8 @@ class TasksList extends Component {
   }
 }
 
-export default TasksList;
-
 TasksList.propTypes = {
   tasks: PropTypes.array,
 };
+
+export default TasksList;
