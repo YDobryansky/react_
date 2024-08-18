@@ -29,7 +29,7 @@ export const fetchTasksList = () => {
     );
 };
 
-export const updatedTasks = (taskId, taskData) => {
+export const uptatedTasks = (taskId, taskData) => {
   return fetch(`${baseUrl}/${taskId}`, {
     method: 'PUT',
     headers: {
