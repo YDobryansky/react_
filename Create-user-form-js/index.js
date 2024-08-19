@@ -15,8 +15,7 @@ formElem.addEventListener('submit', (event) => {
   event.preventDefault()
 
   // Зчитування даних з форми
-  const formData = new FormData(formElem)
-  const userData = Object.fromEntries(formData)
+  const userData = Object.fromEntries(new FormData(formElem))
 
   // Відправка даних на сервер
   fetch('https://5e5cf5eb97d2ea0014796f01.mockapi.io/api/v1/users', {
